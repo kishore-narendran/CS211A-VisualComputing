@@ -1,4 +1,4 @@
-image = double(imread('CARTOON.jpg'));
+image = double(imread('text.jpg'));
 resizedGaussianPyramid = getResizedGaussianPyramid(image);
 levels = size(resizedGaussianPyramid, 1);
 dimension = size(resizedGaussianPyramid{1}, 1);
@@ -25,10 +25,11 @@ for i = 1:levels
     zeroCrossingFlags{i} = findZeroCrossingPixels(secondOrderImage);
 end
 
+threshold = 400;
 for x = 1:levels
     for i = 1:dimension
         for j = 1:dimension
-            if zeroCrossingFlags{x}(i,j) == 1 && pixelVariances{x}(i,j) > 120
+            if zeroCrossingFlags{x}(i,j) == 1 && pixelVariances{x}(i,j) > threshold
                 secondOrderImages{x}(i,j) = 255;
             else
                 secondOrderImages{x}(i,j) = 0;
@@ -37,7 +38,7 @@ for x = 1:levels
     end
     subplot(3,3,x);
     imshow(uint8(secondOrderImages{x}));
-    title(sprintf('Borders on Laplacian Level %d', x));
+    title(sprintf('Borders Level %d', x));
 end
 
 

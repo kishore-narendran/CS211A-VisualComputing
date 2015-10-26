@@ -1,4 +1,4 @@
-img = double(imread('CARTOON.jpg'));
+img = double(imread('polarcities.jpg'));
 laplacianPyramid = getLaplacianPyramid(img);
 dimensions = size(laplacianPyramid{1});
 for i = 1:size(laplacianPyramid, 1)

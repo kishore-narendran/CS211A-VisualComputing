@@ -1,0 +1,18 @@
+img1 = double(imread('CARTOON.jpg'));
+img2 = double(imread('kitty.jpg'));
+img3 = double(imread('flowergray.jpg'));
+img4 = double(imread('text.jpg'));
+img5 = double(imread('polarcities.jpg'));
+
+[mask1, mask2, mask3] = createMasks();
+
+bimg1 = blendImages(img1, img2, mask1);
+bimg2 = blendImages(img3, img4, mask2);
+bimg3 = blendImages(img3, img5, mask3);
+
+subplot(2,2,1);
+imshow(uint8(mask1));
+title('Mask 1');
+
+
+

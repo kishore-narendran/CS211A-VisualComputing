@@ -1,4 +1,4 @@
-img = double(imread('CARTOON.jpg'));
+img = double(imread('polarcities.jpg'));
 gaussianPyramid = getResizedGaussianPyramid(img);
 for i = 1:size(gaussianPyramid, 1)
     subplot(3,3,i);
