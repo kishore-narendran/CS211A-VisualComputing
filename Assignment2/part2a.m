@@ -1,0 +1,11 @@
+img = double(rgb2gray(imread('psnr2.png')));
+subplot(1,3,1);
+imshow(uint8(img));
+title('Original Image');
+subplot(1,3,2);
+imshow(mat2gray(log(fftshift(abs(fft2(img)) + 1))));
+title('Magnitude Plot');
+imgFilt = medfilt2(img, [5 5]);
+subplot(1,3,3);
+imshow(uint8(imgFilt));
+title('Filtered Image');
