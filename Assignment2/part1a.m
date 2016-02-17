@@ -6,7 +6,7 @@ for x = 1:512
     end
 end
 subplot(2,3,1);
-imshow(mat2gray(img));
+imshow(img);
 title('Generated Image');
 
 %Finding the DFT of the image using IFFT
@@ -22,18 +22,18 @@ title('Phase Plot');
 
 %Doubling the frequency domain values
 %Displaying magnitude plot offrequency domain
-imgDft1 = abs(imgDft)*2;
+magDft = abs(imgDft)*2;
 subplot(2,3,4);
-imshow(mat2gray(log(fftshift(abs(imgDft1) + 1))));
+imshow(mat2gray(log(fftshift(magDft + 1))));
 title('Magnitude Plot after Scaling');
 
 subplot(2,3,5);
-imshow(angle(imgDft1));
+imshow(fftshift(angle(imgDft)));
 title('Phase Plot after Scaling');
 
-newImg = ifft2(imgDft1);
+newImg = ifft2(magDft.*exp(1i*angle(imgDft)));
 subplot(2,3,6);
-imshow(mat2gray(newImg));
+imshow(newImg);
 title('Image after IDFT');
 
 
